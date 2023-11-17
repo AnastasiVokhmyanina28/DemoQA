@@ -9,8 +9,8 @@ import Training.Polymorphism.Rectangle;
 public class Main {
     public static void main(String[] args) {
 //  todo     List, HashMap, HashSet
-//        HistoryOfOperationsSteps.currentMonthThirdMethod();
-//        HistoryOfOperationsSteps.currentMonthFourthMethod(7);
+        HistoryOfOperationsSteps.currentMonthThirdMethod();
+        HistoryOfOperationsSteps.currentMonthFourthMethod(7);
         HistoryOfOperationsSteps.currentMonthHashSet();
 
 // todo

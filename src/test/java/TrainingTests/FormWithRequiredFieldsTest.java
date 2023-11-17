@@ -1,5 +1,6 @@
 package TrainingTests;
 
+import ChromeDriver.BaseForm;
 import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
 
@@ -9,7 +10,7 @@ import io.qameta.allure.Story;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class FormWithRequiredFieldsTest extends BaseFormSteps {
+public class FormWithRequiredFieldsTest extends BaseForm {
     public FormSteps steps = new FormSteps();
     public static FormFrame frame = new FormFrame();
 

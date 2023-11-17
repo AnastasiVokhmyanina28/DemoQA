@@ -1,26 +1,23 @@
-package TrainingTests;
+package ChromeDriver;
 
-import ChromeDriver.CustomChromeDriver;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.io.InputStream;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class BaseFormSteps {
+public class BaseForm {
     private static String baseUrl;
 
     static {
         try {
             Properties properties = new Properties();
-            InputStream inputStream = BaseFormSteps.class.getClassLoader().getResourceAsStream("test.properties");
+            InputStream inputStream = BaseForm.class.getClassLoader().getResourceAsStream("test.properties");
             properties.load(inputStream);
             baseUrl = properties.getProperty("baseUrl");
         } catch (Exception e) {

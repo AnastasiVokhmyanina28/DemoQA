@@ -24,7 +24,6 @@
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
         <version>5.8.2</version>
-        <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -37,7 +36,6 @@
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-params</artifactId>
         <version>5.8.2</version>
-        <scope>test</scope>
     </dependency>
     <!--Основной фремворк для поиска элементов в DOM дереве-->
     <dependency>
