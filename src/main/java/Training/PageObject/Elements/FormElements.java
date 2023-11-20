@@ -14,6 +14,9 @@ public class FormElements {
     public static final SelenideElement subject = $("#subjectsContainer").as("subjectsContainer");
     public static final SelenideElement currentAddress = $("#currentAddress").as("currentAddress");
     public static final SelenideElement button = $("#submit").as("Submit");
+    public static final SelenideElement dateOfBirth = $("#dateOfBirthInput").as("dateOfBirth");
+    public static final SelenideElement yearField = $(".react-datepicker__year-select").as("year");
+    public static final SelenideElement mounthField = $(".react-datepicker__month-select").as("mounth");
     public static final SelenideElement buttonClose = $("#closeLargeModal").as("closeLargeModal");
     public static final SelenideElement modalWindowBody = $(".modal-body").as("modalWindow");
 
@@ -21,4 +24,6 @@ public class FormElements {
     public static final ElementsCollection city = $$x("//div[contains(@id, \"react-select-4-option-\")]");
     public static final ElementsCollection state = $$x("//div[contains(@id, \"react-select-3-option-\")]");
     public static final ElementsCollection gender = $$x("//input[contains(@id, 'gender-radio-')]");
+    public static final ElementsCollection chooseYearOfBirth = $$x("//select[@class='react-datepicker__year-select']/option");
+    public static final ElementsCollection chooseOfMonthOfBirth = $$x("//select[@class='react-datepicker__month-select']/option");
 }

@@ -10,7 +10,7 @@ public class FormWithAllFieldsTest extends BaseForm {
 
     private FormSteps steps = new FormSteps();
     @Epic("Заполнение формы")
-    @Story("Все поля")
+    @Story("Обязательные поля формы с дополнительными")
     @Test
     public void test(){
         steps.fillingInTheName();
@@ -18,6 +18,17 @@ public class FormWithAllFieldsTest extends BaseForm {
         steps.fillingInTheEmail();
         steps.selectGender();
         steps.fillInThePhoneNumber();
+// клик по полю день рождения
+        steps.clickOnTheBirthdayField();
+        steps.chooseAMonthOfBirth();
+
+
+
+        steps.chooseAYearOfBirth();
+
+
+
+
     }
 
 

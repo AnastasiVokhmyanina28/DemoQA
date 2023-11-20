@@ -23,7 +23,7 @@ public class FormWithRequiredFieldsTest extends BaseForm {
         steps.selectGender();
         steps.fillInThePhoneNumber();
         steps.clickButton();
-        Assertions.assertThat(frame.formElements.modalWindowBody.isEnabled()).as("Body модального окна");
+        frame.formElements.modalWindowBody.shouldHave();
 //        Assertions.assertThat(frame.formElements.buttonClose.isEnabled()).as("Кнопка модального окна активна");
     }
 

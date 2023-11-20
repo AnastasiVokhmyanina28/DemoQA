@@ -57,6 +57,33 @@ public class FormSteps {
         frame.formElements.phoneNumber.val(numberGeneration());
     }
 
+    @Step("Клик по полю 'День Рождения'")
+    public void clickOnTheBirthdayField() {
+        frame.formElements.dateOfBirth.click();
+    }
+
+    @Step("Выбрать год рождения")
+    public void chooseAYearOfBirth() {
+        frame.formElements.yearField.click();
+
+        List year = new ArrayList();
+        frame.formElements.chooseYearOfBirth.stream().forEach(x -> year.add(x.getAttribute("value")));
+
+        $x("//option[@value = '" + year.stream().filter(x -> x.equals("1998")).findFirst().get() + "']").click();
+    }
+
+    @Step("Выбрать месяц рождения")
+    public void chooseAMonthOfBirth() {
+        frame.formElements.mounthField.click();
+
+        List mounth = new ArrayList();
+        frame.formElements.chooseOfMonthOfBirth.stream().forEach(x -> mounth.add(x.getAttribute("value")));
+
+//        $x("//option[@value = '" + mounth.stream().filter(x -> x.equals("1998")).findFirst().get() + "']").click();
+    }
+
+
+
     @Step("Клик по кнопке 'Submit'")
     public void clickButton() {
         executeJavaScript("document.getElementsByTagName(\"footer\").item(0).remove()");
