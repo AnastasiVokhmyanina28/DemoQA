@@ -18,10 +18,6 @@ public class FormWithAllFieldsTest extends BaseForm {
         steps.fillingInTheEmail();
         steps.selectGender();
         steps.fillInThePhoneNumber();
-
-
-
-
     }
 
 
