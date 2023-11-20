@@ -28,7 +28,7 @@ public class BaseForm {
     @BeforeAll
     public static void setUp() {
         Configuration.browser = CustomChromeDriver.class.getCanonicalName();
-        SelenideLogger.addListener("allure", new AllureSelenide().screenshots(true).savePageSource(false));
+        SelenideLogger.addListener("allure", new AllureSelenide());
         Configuration.pageLoadTimeout = 70_000L;
         open(baseUrl);
 

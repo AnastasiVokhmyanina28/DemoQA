@@ -17,8 +17,8 @@ public class FormElements {
     public static final SelenideElement buttonClose = $("#closeLargeModal").as("closeLargeModal");
     public static final SelenideElement modalWindowBody = $(".modal-body").as("modalWindow");
 
-    public static final ElementsCollection hobbies = $$x("//div[@class = 'custom-control custom-checkbox custom-control-inline']").as("#gender");
-    public static final ElementsCollection city = $$x("//div[contains(@id, \"react-select-4-option-\")]").as("#city");
-    public static final ElementsCollection state = $$x("//div[contains(@id, \"react-select-3-option-\")]").as("#state");
-    public static final ElementsCollection gender = $$x("//input[contains(@id, 'gender-radio-')]").as("#gender");
+    public static final ElementsCollection hobbies = $$x("//div[@class = 'custom-control custom-checkbox custom-control-inline']");
+    public static final ElementsCollection city = $$x("//div[contains(@id, \"react-select-4-option-\")]");
+    public static final ElementsCollection state = $$x("//div[contains(@id, \"react-select-3-option-\")]");
+    public static final ElementsCollection gender = $$x("//input[contains(@id, 'gender-radio-')]");
 }

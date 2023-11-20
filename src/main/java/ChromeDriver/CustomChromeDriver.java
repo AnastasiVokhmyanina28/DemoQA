@@ -1,19 +1,32 @@
 package ChromeDriver;
 
 import com.codeborne.selenide.WebDriverProvider;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.SneakyThrows;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.manager.SeleniumManager;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import javax.annotation.Nonnull;
+import java.util.concurrent.TimeUnit;
 
 public class CustomChromeDriver implements WebDriverProvider {
 
+    public CustomChromeDriver() {
+
+    }
+
     @Nonnull
     @Override
-    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
+    @SneakyThrows
+    public WebDriver createDriver(@Nonnull DesiredCapabilities desiredCapabilities) {
+
+        System.setProperty("webdriver.chrome.driver",Thread.currentThread().getContextClassLoader().getResource("chromedriver.exe").toURI().getPath());
+        //Doesn't matter chrome or Chrome as this is case insensitive.
+        System.setProperty("selenide.browser", "Chrome");
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
@@ -23,8 +36,10 @@ public class CustomChromeDriver implements WebDriverProvider {
         options.addArguments("--disable-cookies");
         options.addArguments("-incognito");
 
+        //WebDriverManager.chromedriver().setup();
 
-        SeleniumManager.getInstance().getDriverPath(options, false);
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//        SeleniumManager.getInstance().getDriverPath(options);
         return new ChromeDriver(options);
     }
 }

@@ -37,9 +37,9 @@ public class FormSteps {
         int i = random.nextInt(frame.formElements.gender.size() - 1);
         List elements = new ArrayList();
 
-        frame.formElements.gender.asFixedIterable()
+        frame.formElements.gender
                 .stream()
-                .forEach(x -> elements.add(x.highlight().getAttribute("id")));
+                .forEach(x -> elements.add(x.getAttribute("id")));
         return elements.get(i).toString();
     }
 
