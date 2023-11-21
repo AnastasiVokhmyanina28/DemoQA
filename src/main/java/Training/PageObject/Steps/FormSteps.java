@@ -17,18 +17,18 @@ public class FormSteps {
     public static FormFrame frame = new FormFrame();
 
     @Step("Заполнение поля FirstName")
-    public void fillingInTheName() {
-        frame.formElements.firstName.val("Александр");
+    public void fillingInTheName(String name) {
+        frame.formElements.firstName.val(name);
     }
 
     @Step("Заполнение поля LastName")
-    public void fillingInTheLastName() {
-        frame.formElements.lastName.val("Шилов");
+    public void fillingInTheLastName(String lastName) {
+        frame.formElements.lastName.val(lastName);
     }
 
     @Step("Заполнение поля Email")
-    public void fillingInTheEmail() {
-        frame.formElements.email.val("Shilov77alex@gmail.com");
+    public void fillingInTheEmail(String email) {
+        frame.formElements.email.val(email);
     }
 
 

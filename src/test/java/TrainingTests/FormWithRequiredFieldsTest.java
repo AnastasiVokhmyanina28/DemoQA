@@ -5,9 +5,9 @@ import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
 
 
+import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class FormWithRequiredFieldsTest extends BaseForm {
@@ -15,11 +15,12 @@ public class FormWithRequiredFieldsTest extends BaseForm {
     public static FormFrame frame = new FormFrame();
 
     @Epic("Заполнение формы")
-    @Story("Обязательные поля")
+    @Description("Заполнение обязательных полей формы")
     @Test
-    public void test() {
-        steps.fillingInTheName();
-        steps.fillingInTheLastName();
+    public void fillInTheRequiredFields() {
+        steps.fillingInTheName("Марина");
+        steps.fillingInTheLastName("Булычева");
+        steps.fillingInTheEmail("mari77n@gmail.com");
         steps.selectGender();
         steps.fillInThePhoneNumber();
         steps.clickButton();

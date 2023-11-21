@@ -1,5 +1,6 @@
 package ChromeDriver;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverProvider;
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +22,6 @@ public class CustomChromeDriver implements WebDriverProvider {
     public WebDriver createDriver(@Nonnull DesiredCapabilities desiredCapabilities) {
 
         System.setProperty("webdriver.chrome.driver", Thread.currentThread().getContextClassLoader().getResource("chromedriver.exe").toURI().getPath());
-        //Doesn't matter chrome or Chrome as this is case insensitive.
         System.setProperty("selenide.browser", "Chrome");
 
 
@@ -34,12 +34,9 @@ public class CustomChromeDriver implements WebDriverProvider {
         options.addArguments("--disable-cookies");
         options.addArguments("-incognito");
 
+        Configuration.browserCapabilities = options;
+        Configuration.browserSize = null;
 
-
-//        WebDriverManager.chromedriver().setup();
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//        SeleniumManager.getInstance().getDriverPath(options);
         return new ChromeDriver(options);
     }
 }
