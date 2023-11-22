@@ -7,7 +7,6 @@ import Training.PageObject.Steps.FormSteps;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 
 public class FormWithRequiredFieldsTest extends BaseForm {
@@ -18,12 +17,38 @@ public class FormWithRequiredFieldsTest extends BaseForm {
     @Description("Заполнение обязательных полей формы")
     @Test
     public void fillInTheRequiredFields() {
+        /*
+         * Шаг : Заполнение поля 'FirstName'
+         * ОР : Отображается введенное значение
+         */
         steps.fillingInTheName("Марина");
+
+        /*
+         * Шаг : Заполнение поля 'LastName'
+         * ОР : Отображается введенное значение
+         */
         steps.fillingInTheLastName("Булычева");
+        /*
+         * Шаг : Зполнение поля 'Email'
+         * ОР : Отображается введенное значение
+         */
         steps.fillingInTheEmail("mari77n@gmail.com");
+        /*
+         * Шаг : Выбрать 'Gender'
+         * ОР : Выбран чекбокс(элемент становится активным)
+         */
         steps.selectGender();
+        /*
+         * Шаг : Заполнение поля 'Mobile'
+         * ОР :  Отображается введенное значение
+         */
         steps.fillInThePhoneNumber();
+        /*
+         * Шаг : Клик по кнопке 'Submit'
+         * ОР : Откроется модальное окно с заполненными данными
+         */
         steps.clickButton();
+
         frame.formElements.modalWindowBody.shouldHave();
 //        Assertions.assertThat(frame.formElements.buttonClose.isEnabled()).as("Кнопка модального окна активна");
     }

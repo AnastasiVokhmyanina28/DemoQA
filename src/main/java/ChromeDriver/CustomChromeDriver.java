@@ -24,13 +24,13 @@ public class CustomChromeDriver implements WebDriverProvider {
         System.setProperty("webdriver.chrome.driver", Thread.currentThread().getContextClassLoader().getResource("chromedriver.exe").toURI().getPath());
         System.setProperty("selenide.browser", "Chrome");
 
-
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
         options.addArguments("--start-maximized");
         options.addArguments("--disable-cache");
+        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-cookies");
         options.addArguments("-incognito");
 
