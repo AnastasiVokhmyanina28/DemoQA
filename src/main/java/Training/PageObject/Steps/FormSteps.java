@@ -56,30 +56,29 @@ public class FormSteps {
         frame.formElements.phoneNumber.val(numberGeneration());
     }
 
-    @Step("Клик по полю 'Date of Birth'")
-    public void clickOnTheBirthdayField() {
-        frame.formElements.dateOfBirth.click();
-    }
-
-    @Step("Выбрать год рождения")
+    @Step("Выбрать дату дня рождения")
     public void chooseAYearOfBirth() {
+        frame.formElements.dateOfBirth.click();
+
         frame.formElements.yearField.click();
+        frame.formElements.chooseYearOfBirth.click();
 
-        List year = new ArrayList();
-        frame.formElements.chooseYearOfBirth.stream().forEach(x -> year.add(x.getAttribute("value")));
-
-        $x("//option[@value = '" + year.stream().filter(x -> x.equals("1998")).findFirst().get() + "']").click();
-    }
-
-    @Step("Выбрать месяц рождения")
-    public void chooseAMonthOfBirth() {
         frame.formElements.mounthField.click();
+        frame.formElements.chooseOfMonthOfBirth.click();
 
-        List mounth = new ArrayList();
-        frame.formElements.chooseOfMonthOfBirth.stream().forEach(x -> mounth.add(x.getAttribute("value")));
-
-//        $x("//option[@value = '" + mounth.stream().filter(x -> x.equals("1998")).findFirst().get() + "']").click();
+        frame.formElements.chooseOfDayOfBirth.click();
     }
+
+    //todo  проверка на то, что при вводе символа появляется выпадающий список
+    @Step("Выбрать 'Subjects'")
+    public void chooseOfSubjects(String symbol) {
+        frame.formElements.subject.click();
+
+        frame.formElements.subject.val(symbol);
+
+
+    }
+
 
     @Step("Клик по кнопке 'Submit'")
     public void clickButton() {

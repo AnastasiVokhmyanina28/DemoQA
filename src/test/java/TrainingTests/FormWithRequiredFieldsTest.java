@@ -7,6 +7,7 @@ import Training.PageObject.Steps.FormSteps;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class FormWithRequiredFieldsTest extends BaseForm {
@@ -15,6 +16,7 @@ public class FormWithRequiredFieldsTest extends BaseForm {
 
     @Epic("Заполнение формы")
     @Description("Заполнение обязательных полей формы")
+    @DisplayName("Заполнение обязательных полей формы")
     @Test
     public void fillInTheRequiredFields() {
         /*
@@ -43,9 +45,16 @@ public class FormWithRequiredFieldsTest extends BaseForm {
          * ОР :  Отображается введенное значение
          */
         steps.fillInThePhoneNumber();
+
+        /*
+         * Шаг : Выбрать дату рождения
+         * ОР : В поле 'Date of Birth' отобразится полная дата
+         */
+        steps.chooseAYearOfBirth();
+
         /*
          * Шаг : Клик по кнопке 'Submit'
-         * ОР : Откроется модальное окно с заполненными данными
+         * ОР : Откроется модальное окно с введенными данными
          */
         steps.clickButton();
 

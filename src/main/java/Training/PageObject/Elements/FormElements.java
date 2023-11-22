@@ -24,6 +24,10 @@ public class FormElements {
     public static final ElementsCollection city = $$x("//div[contains(@id, \"react-select-4-option-\")]");
     public static final ElementsCollection state = $$x("//div[contains(@id, \"react-select-3-option-\")]");
     public static final ElementsCollection gender = $$x("//input[contains(@id, 'gender-radio-')]");
-    public static final ElementsCollection chooseYearOfBirth = $$x("//select[@class='react-datepicker__year-select']/option");
-    public static final ElementsCollection chooseOfMonthOfBirth = $$x("//select[@class='react-datepicker__month-select']/option");
+    public static final SelenideElement chooseYearOfBirth = $x("//select[@class='react-datepicker__year-select']/option[@value='1981']");
+    public static final SelenideElement chooseOfMonthOfBirth = $x("//select[@class='react-datepicker__month-select']/option[@value='5']");
+    public static final SelenideElement chooseOfDayOfBirth = $x("//div[contains(@class, 'react-datepicker__day react-datepicker__day--018')]");
+    public static final SelenideElement subjectList = $x("//div[contains(@class, 'subjects-auto-complete__option')]");
 }
+
+
