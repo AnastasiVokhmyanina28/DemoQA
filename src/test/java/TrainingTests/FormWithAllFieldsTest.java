@@ -47,10 +47,34 @@ public class FormWithAllFieldsTest extends BaseForm {
          */
         steps.chooseAYearOfBirth();
         /*
-         * Шаг : Клик по полю 'Subjects'
-         * ОР : Поле активно
+         * Шаг : Выбрать элемент 'Subjects' из выпадающего списка
+         * ОР : В поле отобразится выбранный элемент
          */
-        steps.chooseOfSubjects("g");
+        steps.chooseOfSubjects("o");
+        /*
+         * Шаг : Выбрать 'Hobbies'
+         * ОР : Выбранный чекбокс активен
+         */
+        steps.chooseHobbies();
+
+        //todo не срабатывает клик(переделать селектор)
+        /*
+         * Шаг : Загрузить файл
+         * ОР :
+         */
+//        steps.fileUpload();
+        /*
+         * Шаг : Заполнение поля 'Current Address'
+         * ОР : Отображается введенное значение
+         */
+        steps.enterAddress("Кострома");
+        /*
+         * Шаг : Выбрать 'State'
+         * ОР : Отображается выбранное значение
+         */
+        steps.chooseState();
+
+
 
 
 

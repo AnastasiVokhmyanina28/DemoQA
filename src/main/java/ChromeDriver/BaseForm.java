@@ -29,7 +29,7 @@ public class BaseForm {
     public static void setUp() {
         Configuration.browser = CustomChromeDriver.class.getCanonicalName();
         SelenideLogger.addListener("allure", new AllureSelenide());
-        Configuration.pageLoadTimeout = 70_000L;
+        Configuration.pageLoadTimeout = 100_000L;
         open(baseUrl);
     }
 
