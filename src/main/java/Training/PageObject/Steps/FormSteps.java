@@ -1,20 +1,19 @@
 package Training.PageObject.Steps;
 
+import Training.DataGeneration.NumberGeneration;
+import Training.DataGeneration.RandomStringGeneration;
 import Training.PageObject.Frame.FormFrame;
-import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Step;
-import org.apache.commons.lang3.RandomStringUtils;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class FormSteps {
     public static FormFrame frame = new FormFrame();
+    public static RandomStringGeneration generation = new RandomStringGeneration();
+    private static NumberGeneration numberGeneration = new NumberGeneration();
 
     @Step("Заполнение поля 'FirstName'")
     public void fillingInTheName(String name) {
@@ -31,30 +30,18 @@ public class FormSteps {
         frame.formElements.email.val(email);
     }
 
-    private String randomize(ElementsCollection elements) {
-        Random random = new Random();
-        int i = random.nextInt(elements.size() - 1);
-
-        List list = new ArrayList();
-        elements.stream().forEach(x -> list.add(x.getAttribute("id")));
-        return list.get(i).toString();
-    }
-
     @Step("Выбрать 'Gender'")
     public void selectGender() {
-        $x("//label[@for = '" + randomize(frame.formElements.gender) + "']").click();
+        frame.formElements.getGender(generation.randomize(frame.formElements.gender, "id")).click();
     }
 
-    private String numberGeneration() {
-        return RandomStringUtils.randomNumeric(10);
-    }
 
     @Step("Заполнение поля 'Mobile'")
     public void fillInThePhoneNumber() {
-        frame.formElements.phoneNumber.val(numberGeneration());
+        frame.formElements.phoneNumber.val(numberGeneration.numberGeneration());
     }
 
-    @Step("Выбрать дату дня рождения")
+    @Step("Выбрать 'Date of Birth'")
     public void chooseAYearOfBirth() {
         frame.formElements.dateOfBirth.click();
 
@@ -72,20 +59,13 @@ public class FormSteps {
 
         frame.formElements.subject.val(symbol);
         if (frame.formElements.themeDropDownMenu.isDisplayed()) {
-            List subjectList = new ArrayList();
-
-            frame.formElements.subjectList.stream()
-                    .forEach(x -> subjectList.add(x.getAttribute("class")));
-            $x("//div[@class = '" + subjectList.get(1) + "']").click();
+            frame.formElements.getSubject(generation.randomize(frame.formElements.subjectList, "class")).click();
         }
     }
 
     @Step("Выбрать 'Hobbies'")
     public void chooseHobbies() {
-        List hobbiesList = new ArrayList();
-        frame.formElements.hobbies.stream().forEach(x -> hobbiesList.add(x.getAttribute("id")));
-        $x("//label[@for = '" + hobbiesList.get(0) + "']").click();
-        $x("//label[@for = '" + hobbiesList.get(2) + "']").click();
+        frame.formElements.getHobbies(generation.randomize(frame.formElements.hobbies, "id")).click();
     }
 
     @Step("Загрузить файл")
@@ -99,21 +79,21 @@ public class FormSteps {
         frame.formElements.currentAddress.setValue(adress);
     }
 
-    @Step
+    @Step("Выбрать 'State'")
     public void chooseState() {
         frame.formElements.statesField.click();
 
         if (frame.formElements.stateAndCityFieldDropDownMenu.isDisplayed()) {
-
-            $x("//div[@id = '" + randomize(frame.formElements.state) + "']").click();
+            frame.formElements.getState(generation.randomize(frame.formElements.state, "id")).click();
         }
     }
 
+    @Step("Выбрать 'City'")
     public void chooseCity() {
         frame.formElements.cityField.click();
 
         if (frame.formElements.stateAndCityFieldDropDownMenu.isDisplayed()) {
-            $x("//div[@id = '" + randomize(frame.formElements.city) + "']").click();
+            frame.formElements.getCity(generation.randomize(frame.formElements.city, "id")).click();
         }
     }
 
