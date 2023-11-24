@@ -1,6 +1,7 @@
 package TrainingTests;
 
 import ChromeDriver.BaseForm;
+import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 public class FormWithAllFieldsTest extends BaseForm {
 
     private FormSteps steps = new FormSteps();
+    public static FormFrame frame = new FormFrame();
 
     @Epic("Заполнение формы")
     @Description("Заполнение обязательных и дополнительных полей формы")
@@ -57,12 +59,11 @@ public class FormWithAllFieldsTest extends BaseForm {
          */
         steps.chooseHobbies();
 
-        //todo не срабатывает клик(переделать селектор)
         /*
          * Шаг : Загрузить файл
-         * ОР :
+         * ОР : Отображается название выбранного файла
          */
-//        steps.fileUpload();
+        steps.fileUpload();
         /*
          * Шаг : Заполнение поля 'Current Address'
          * ОР : Отображается введенное значение
@@ -73,21 +74,18 @@ public class FormWithAllFieldsTest extends BaseForm {
          * ОР : Отображается выбранное значение
          */
         steps.chooseState();
-
-
-
-
-
-
-
+        /*
+         * Шаг : Выбрать 'City'
+         * ОР : Отображается выбранное значение
+         */
+        steps.chooseCity();
         /*
          * Шаг : Клик по кнопке 'Submit'
          * ОР : Откроется модальное окно с введенными данными
          */
         steps.clickButton();
 
-
+        frame.formElements.buttonClose.shouldHave();
     }
-
 
 }

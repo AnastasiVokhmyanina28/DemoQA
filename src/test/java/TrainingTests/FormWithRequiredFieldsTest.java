@@ -24,7 +24,6 @@ public class FormWithRequiredFieldsTest extends BaseForm {
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheName("Марина");
-
         /*
          * Шаг : Заполнение поля 'LastName'
          * ОР : Отображается введенное значение
@@ -45,13 +44,11 @@ public class FormWithRequiredFieldsTest extends BaseForm {
          * ОР :  Отображается введенное значение
          */
         steps.fillInThePhoneNumber();
-
         /*
          * Шаг : Выбрать дату рождения
          * ОР : В поле 'Date of Birth' отобразится полная дата
          */
         steps.chooseAYearOfBirth();
-
         /*
          * Шаг : Клик по кнопке 'Submit'
          * ОР : Откроется модальное окно с введенными данными

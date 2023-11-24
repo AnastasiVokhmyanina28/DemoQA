@@ -1,10 +1,10 @@
 package Training.PageObject.Steps;
 
 import Training.PageObject.Frame.FormFrame;
+import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -31,20 +31,18 @@ public class FormSteps {
         frame.formElements.email.val(email);
     }
 
-    private String getIdGender() {
+    private String randomize(ElementsCollection elements) {
         Random random = new Random();
-        int i = random.nextInt(frame.formElements.gender.size() - 1);
-        List elements = new ArrayList();
+        int i = random.nextInt(elements.size() - 1);
 
-        frame.formElements.gender
-                .stream()
-                .forEach(x -> elements.add(x.getAttribute("id")));
-        return elements.get(i).toString();
+        List list = new ArrayList();
+        elements.stream().forEach(x -> list.add(x.getAttribute("id")));
+        return list.get(i).toString();
     }
 
     @Step("Выбрать 'Gender'")
     public void selectGender() {
-        $x("//label[@for = '" + getIdGender() + "']").click();
+        $x("//label[@for = '" + randomize(frame.formElements.gender) + "']").click();
     }
 
     private String numberGeneration() {
@@ -88,39 +86,41 @@ public class FormSteps {
         frame.formElements.hobbies.stream().forEach(x -> hobbiesList.add(x.getAttribute("id")));
         $x("//label[@for = '" + hobbiesList.get(0) + "']").click();
         $x("//label[@for = '" + hobbiesList.get(2) + "']").click();
-
-        System.out.println(hobbiesList);
     }
 
-//    @Step("Загрузить файл")
-//    public void fileUpload(){
-//        frame.formElements.fileUpload.click();
-////                uploadFromClasspath("src/main/resources/file/Resume.doc");
-//    }
+    @Step("Загрузить файл")
+    public void fileUpload() {
+        File file = new File("src/main/resources/file/Resume.doc");
+        frame.formElements.fileUpload.sendKeys(file.getAbsolutePath());
+    }
 
     @Step("Заполнение поля 'Current Address'")
     public void enterAddress(String adress) {
         frame.formElements.currentAddress.setValue(adress);
     }
 
-    //todo переделать  локатор
     @Step
     public void chooseState() {
         frame.formElements.statesField.click();
 
-        List stateList = new ArrayList();
+        if (frame.formElements.stateAndCityFieldDropDownMenu.isDisplayed()) {
 
-        frame.formElements.state.stream().forEach(x -> stateList.add(x.getAttribute("id")));
-
-        $("//div[@class = '" + stateList.get(0)).click();
+            $x("//div[@id = '" + randomize(frame.formElements.state) + "']").click();
+        }
     }
 
+    public void chooseCity() {
+        frame.formElements.cityField.click();
+
+        if (frame.formElements.stateAndCityFieldDropDownMenu.isDisplayed()) {
+            $x("//div[@id = '" + randomize(frame.formElements.city) + "']").click();
+        }
+    }
 
     @Step("Клик по кнопке 'Submit'")
     public void clickButton() {
         executeJavaScript("document.getElementsByTagName(\"footer\").item(0).remove()");
         frame.formElements.button.shouldBe(visible).click();
-
     }
 
 }
