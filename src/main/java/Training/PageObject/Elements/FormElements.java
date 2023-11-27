@@ -18,6 +18,7 @@ public class FormElements {
     public static final SelenideElement mounthField = $(".react-datepicker__month-select").as("mounth");
     public static final SelenideElement buttonClose = $("#closeLargeModal").as("closeLargeModal");
     public static final SelenideElement fileUpload = $x("//input[@id = 'uploadPicture']").as("uploadPicture");
+    public static final SelenideElement footer = $x("//footer").as("footer");
     public static final SelenideElement modalWindowBody = $(".modal-body").as("modalWindow");
     public static final ElementsCollection hobbies = $$x("//div[@class = 'custom-control custom-checkbox custom-control-inline']/input");
     public static final SelenideElement cityField = $("#city");
@@ -26,6 +27,10 @@ public class FormElements {
     public static final SelenideElement stateAndCityFieldDropDownMenu = $x("//div[@class = ' css-11unzgr']");
     public static final ElementsCollection state = $$x("//div[contains(@id, \"react-select-3-option-\")]").as("Элементы выпадающего списка 'State'");
     public static final ElementsCollection gender = $$x("//input[contains(@id, 'gender-radio-')]");
+    public static final SelenideElement maleGender = $x("//label[@for='gender-radio-1']");
+    public static final SelenideElement maleGenderCheckBox = $x("//input[@id='gender-radio-1']");
+    public static final SelenideElement femaleGender = $x("//label[@for='gender-radio-2']");
+    public static final SelenideElement femaleGenderCheckBox = $x("//input[@id='gender-radio-2']");
     public static final SelenideElement chooseYearOfBirth = $x("//select[@class='react-datepicker__year-select']/option[@value='1981']");
     public static final SelenideElement chooseOfMonthOfBirth = $x("//select[@class='react-datepicker__month-select']/option[@value='5']");
     public static final SelenideElement chooseOfDayOfBirth = $x("//div[contains(@class, 'react-datepicker__day react-datepicker__day--018')]");

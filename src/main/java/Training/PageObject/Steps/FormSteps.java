@@ -1,7 +1,6 @@
 package Training.PageObject.Steps;
 
-import Training.DataGeneration.NumberGeneration;
-import Training.DataGeneration.RandomStringGeneration;
+import Training.DataGeneration.DataGeneration;
 import Training.PageObject.Frame.FormFrame;
 import io.qameta.allure.Step;
 
@@ -12,8 +11,7 @@ import java.io.File;
 
 public class FormSteps {
     public static FormFrame frame = new FormFrame();
-    public static RandomStringGeneration generation = new RandomStringGeneration();
-    private static NumberGeneration numberGeneration = new NumberGeneration();
+    public static DataGeneration generation = new DataGeneration();
 
     @Step("Заполнение поля 'FirstName'")
     public void fillingInTheName(String name) {
@@ -38,7 +36,12 @@ public class FormSteps {
 
     @Step("Заполнение поля 'Mobile'")
     public void fillInThePhoneNumber() {
-        frame.formElements.phoneNumber.val(numberGeneration.numberGeneration());
+        frame.formElements.phoneNumber.val(generation.numberGeneration());
+    }
+
+    @Step("Некорректное заполнение поля 'Mobile'")
+    public void fillInThePhoneNumber(String number) {
+        frame.formElements.phoneNumber.val(number);
     }
 
     @Step("Выбрать 'Date of Birth'")
@@ -99,8 +102,16 @@ public class FormSteps {
 
     @Step("Клик по кнопке 'Submit'")
     public void clickButton() {
-        executeJavaScript("document.getElementsByTagName(\"footer\").item(0).remove()");
+        if (frame.formElements.footer.isDisplayed()) {
+            generation.deleteFooter();
+        }
         frame.formElements.button.shouldBe(visible).click();
+    }
+
+    @Step("Попытка выбрать 2 гендера")
+    public void genderCheckTheSelection() {
+        frame.formElements.maleGender.click();
+        frame.formElements.femaleGender.click();
     }
 
 }
