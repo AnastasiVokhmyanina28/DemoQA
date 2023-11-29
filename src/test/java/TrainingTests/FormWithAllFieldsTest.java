@@ -3,10 +3,8 @@ package TrainingTests;
 import ChromeDriver.BaseForm;
 import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
-import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 public class FormWithAllFieldsTest extends BaseForm {
 
@@ -14,45 +12,52 @@ public class FormWithAllFieldsTest extends BaseForm {
     public static FormFrame frame = new FormFrame();
 
     @Epic("Заполнение формы")
-    @Description("Заполнение обязательных и дополнительных полей формы")
-    @DisplayName("Заполнение обязательных и дополнительных полей формы")
-    @Test
+    @Test(description = "Заполнение обязательных и дополнительных полей формы", testName = "Заполнение обязательных и дополнительных полей формы")
+
     public void fillInTheRequiredAndAdditionalFields() {
+
         /*
          * Шаг : Заполнение поля 'FirstName'
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheName("Александр");
+
         /*
          * Шаг : Заполнение поля 'LastName'
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheLastName("Шилов");
+
         /*
          * Шаг : Зполнение поля 'Email'
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheEmail("Shilov77alex@gmail.com");
+
         /*
          * Шаг : Выбрать 'Gender'
          * ОР : Выбран чекбокс(элемент становится активным)
          */
         steps.selectGender();
+
         /*
          * Шаг : Заполнение поля 'Mobile'
          * ОР :  Отображается введенное значение
          */
         steps.fillInThePhoneNumber();
+
         /*
          * Шаг : Выбрать дату рождения
          * ОР : В поле 'Date of Birth' отобразится полная дата
          */
         steps.chooseAYearOfBirth();
+
         /*
          * Шаг : Выбрать элемент 'Subjects' из выпадающего списка
          * ОР : В поле отобразится выбранный элемент
          */
         steps.chooseOfSubjects("o");
+
         /*
          * Шаг : Выбрать 'Hobbies'
          * ОР : Выбранный чекбокс активен
@@ -64,21 +69,25 @@ public class FormWithAllFieldsTest extends BaseForm {
          * ОР : Отображается название выбранного файла
          */
         steps.fileUpload();
+
         /*
          * Шаг : Заполнение поля 'Current Address'
          * ОР : Отображается введенное значение
          */
         steps.enterAddress("Кострома");
+
         /*
          * Шаг : Выбрать 'State'
          * ОР : Отображается выбранное значение
          */
         steps.chooseState();
+
         /*
          * Шаг : Выбрать 'City'
          * ОР : Отображается выбранное значение
          */
         steps.chooseCity();
+
         /*
          * Шаг : Клик по кнопке 'Submit'
          * ОР : Откроется модальное окно с введенными данными

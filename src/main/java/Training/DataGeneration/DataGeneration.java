@@ -1,7 +1,6 @@
 package Training.DataGeneration;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import org.apache.commons.lang3.RandomStringUtils;
 import static com.codeborne.selenide.Selenide.*;
 

@@ -3,8 +3,8 @@ package ChromeDriver;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -25,7 +25,7 @@ public class BaseForm {
         }
     }
 
-    @BeforeAll
+    @BeforeClass
     public static void setUp() {
         Configuration.browser = CustomChromeDriver.class.getCanonicalName();
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -33,7 +33,7 @@ public class BaseForm {
         open(baseUrl);
     }
 
-    @AfterAll
+    @AfterClass
     public static void close() {
         closeWebDriver();
     }
