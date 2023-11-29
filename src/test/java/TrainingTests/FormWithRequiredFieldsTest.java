@@ -3,6 +3,7 @@ package TrainingTests;
 import ChromeDriver.BaseForm;
 import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
+import com.codeborne.selenide.Condition;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
@@ -57,7 +58,7 @@ public class FormWithRequiredFieldsTest extends BaseForm {
          */
         steps.clickButton();
 
-        frame.formElements.modalWindowBody.shouldHave();
+        frame.formElements.modalWindowBody.shouldHave(Condition.exist);
 //        Assertions.assertThat(frame.formElements.buttonClose.isEnabled()).as("Кнопка модального окна активна");
     }
 

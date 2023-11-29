@@ -12,7 +12,6 @@ public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
 
     private static FormSteps steps = new FormSteps();
     private static FormFrame formFrame = new FormFrame();
-    private String stringLength = "1234567891023456";
 
     @Epic("Проверка формы")
     @Test(description = "Проверка формы с обязательными полями", testName = "Проверка формы с обязательными полями")
@@ -57,7 +56,8 @@ public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
          * ОР : Возможность выбрать только 1 гендер
          */
         steps.genderCheckTheSelection();
-        Assertions.assertThat(formFrame.formElements.maleGenderCheckBox.isSelected()).isNotEqualTo(formFrame.formElements.femaleGenderCheckBox.isSelected());
+        Assertions.assertThat(formFrame.formElements.maleGenderRadioButton.isSelected())
+                .isNotEqualTo(formFrame.formElements.femaleGenderRadioButton.isSelected());
 
         /*
          * Шаг : Клик по кнопке 'Submit'
@@ -70,8 +70,8 @@ public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
          * Шаг : Заполнение поля 'Mobile'(количество символов в строке превышает максимально допустимое - введено 16 символов)
          * ОР :  Отображаются только первые 10 символов от вводимой строки
          */
-        steps.fillInThePhoneNumber(stringLength);
-        Assertions.assertThat(formFrame.formElements.phoneNumber.getValue().length()).isNotEqualTo(stringLength.length());
+        steps.fillInThePhoneNumber("1234567890123");
+        Assertions.assertThat(formFrame.formElements.phoneNumber.getValue().length()).isEqualTo(Integer.valueOf(formFrame.formElements.phoneNumber.getAttribute("maxlength")));
 
         /*
          * Шаг : Клик по кнопке 'Submit'
