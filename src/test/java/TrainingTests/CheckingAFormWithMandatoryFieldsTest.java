@@ -80,4 +80,5 @@ public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
         steps.clickButton();
         formFrame.formElements.buttonClose.shouldBe(Condition.visible);
     }
+
 }

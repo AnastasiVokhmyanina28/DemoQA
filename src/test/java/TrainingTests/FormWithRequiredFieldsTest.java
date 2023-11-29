@@ -35,7 +35,7 @@ public class FormWithRequiredFieldsTest extends BaseForm {
 
         /*
          * Шаг : Выбрать 'Gender'
-         * ОР : Выбран чекбокс(элемент становится активным)
+         * ОР : Выбрана радиокнопка(элемент становится активным)
          */
         steps.selectGender();
 
