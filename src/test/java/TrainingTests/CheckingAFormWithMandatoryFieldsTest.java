@@ -1,17 +1,21 @@
 package TrainingTests;
 
 import ChromeDriver.BaseForm;
+import Person.Student;
 import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Epic;
-import org.assertj.core.api.Assertions;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.testng.annotations.Test;
 
 public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
 
-    private static FormSteps steps = new FormSteps();
-    private static FormFrame formFrame = new FormFrame();
+    private FormSteps steps = new FormSteps();
+    private FormFrame formFrame = new FormFrame();
+    private Student testData = Student.randomized();
 
     @Epic("Проверка формы")
     @Test(description = "Проверка формы с обязательными полями", testName = "Проверка формы с обязательными полями")
@@ -29,7 +33,7 @@ public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
          * Шаг : Заполнение поля 'FirstName'
          * ОР : Отображается введенное значение
          */
-        steps.fillingInTheName("Андрей");
+        steps.fillingInTheName(testData.getFirstName());
 
         /*
          * Шаг : Клик по кнопке 'Submit'
@@ -42,7 +46,7 @@ public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
          * Шаг : Заполнение поля 'LastName'
          * ОР : Отображается введенное значение
          */
-        steps.fillingInTheLastName("Корев");
+        steps.fillingInTheLastName(testData.getLastName());
 
         /*
          * Шаг : Клик по кнопке 'Submit'
@@ -56,7 +60,7 @@ public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
          * ОР : Возможность выбрать только 1 гендер
          */
         steps.genderCheckTheSelection();
-        Assertions.assertThat(formFrame.formElements.maleGenderRadioButton.isSelected())
+        assertThat(formFrame.formElements.maleGenderRadioButton.isSelected())
                 .isNotEqualTo(formFrame.formElements.femaleGenderRadioButton.isSelected());
 
         /*
@@ -71,7 +75,7 @@ public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
          * ОР :  Отображаются только первые 10 символов от вводимой строки
          */
         steps.fillInThePhoneNumber("1234567890123");
-        Assertions.assertThat(formFrame.formElements.phoneNumber.getValue().length()).isEqualTo(Integer.valueOf(formFrame.formElements.phoneNumber.getAttribute("maxlength")));
+        assertThat(formFrame.formElements.phoneNumber.getValue().length()).isEqualTo(Integer.valueOf(formFrame.formElements.phoneNumber.getAttribute("maxlength")));
 
         /*
          * Шаг : Клик по кнопке 'Submit'

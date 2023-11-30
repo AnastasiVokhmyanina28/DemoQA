@@ -2,11 +2,10 @@ package Training.DataGeneration;
 
 import com.codeborne.selenide.ElementsCollection;
 import org.apache.commons.lang3.RandomStringUtils;
+
 import static com.codeborne.selenide.Selenide.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class DataGeneration {
 
@@ -23,7 +22,7 @@ public class DataGeneration {
         return list.get(i).toString();
     }
 
-    public static void deleteFooter(){
+    public static void deleteFooter() {
         executeJavaScript("document.getElementsByTagName(\"footer\").item(0).remove()");
     }
 

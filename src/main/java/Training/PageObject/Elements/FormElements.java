@@ -1,7 +1,9 @@
 package Training.PageObject.Elements;
 
+import Person.Student;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import lombok.AllArgsConstructor;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -36,13 +38,38 @@ public class FormElements {
     public static final SelenideElement chooseOfDayOfBirth = $x("//div[contains(@class, 'react-datepicker__day react-datepicker__day--018')]");
     public static final ElementsCollection subjectList = $$x("//div[contains(@class, 'subjects-auto-complete__option')]").as("элементы в выпадающем списке");
     public static final SelenideElement themeDropDownMenu = $x("//div[@class = 'subjects-auto-complete__menu-list subjects-auto-complete__menu-list--is-multi css-11unzgr']").as("выпадающий список поля 'Subject'");
+    public static ElementsCollection getModalWindowValues = $$x("//table[@class = 'table table-dark table-striped table-bordered table-hover']//td[2]").as("Список values в модальном окне");
 
     public static SelenideElement getState(String id) {
         return $x("//div[@id = '" + id + "']");
     }
 
-    public static SelenideElement getGender(String id) {
-        return $x("//label[@for = '" + id + "']");
+    public static Student getModalData() {
+        Student result = new Student();
+        result.setFirstName(getModalWindowValues.get(ROWS.Student_name.tabIndex).getText().split(" ")[0]);
+        result.setLastName(getModalWindowValues.get(ROWS.Student_name.tabIndex).getText().split(" ")[1]);
+        result.setGender(Student.GENDERS.valueOf(getModalWindowValues.get(ROWS.Student_gender.tabIndex).getText()));
+        result.setMobile(getModalWindowValues.get(ROWS.Student_Mobile.tabIndex).getText());
+
+        return result;
+    }
+
+    public static SelenideElement getGenderRadio(String value) {
+        return $x(String.format("//div[@id='genterWrapper']//input[@value='%s']/following-sibling::label", value));
+    }
+
+    @AllArgsConstructor
+    private enum ROWS {
+        Student_name(0),
+        Student_email(1),
+        Student_gender(2),
+        Student_Mobile(3);
+        final Integer tabIndex;
+    }
+
+    public static void selectGender(String value) {
+        getGenderRadio(value).click();
+
     }
 
     public static SelenideElement getSubject(String elementClass) {

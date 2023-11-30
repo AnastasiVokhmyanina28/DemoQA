@@ -28,8 +28,8 @@ public class FormSteps {
     }
 
     @Step("Выбрать 'Gender'")
-    public void selectGender() {
-        frame.formElements.getGender(generation.randomize(frame.formElements.gender, "id")).click();
+    public void selectGender(String value) {
+        frame.formElements.selectGender(value);
     }
 
 

@@ -1,15 +1,16 @@
 package TrainingTests;
 
 import ChromeDriver.BaseForm;
+import Person.Student;
 import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
 public class FormWithAllFieldsTest extends BaseForm {
-
     private FormSteps steps = new FormSteps();
-    public static FormFrame frame = new FormFrame();
+    private FormFrame frame = new FormFrame();
+    private Student testData = Student.randomized();
 
     @Epic("Заполнение формы")
     @Test(description = "Заполнение обязательных и дополнительных полей формы", testName = "Заполнение обязательных и дополнительных полей формы")
@@ -38,7 +39,7 @@ public class FormWithAllFieldsTest extends BaseForm {
          * Шаг : Выбрать 'Gender'
          * ОР : Выбрана радиокнопка(элемент становится активным)
          */
-        steps.selectGender();
+        steps.selectGender(testData.getGender().getGender());
 
         /*
          * Шаг : Заполнение поля 'Mobile'

@@ -1,15 +1,19 @@
 package TrainingTests;
 
 import ChromeDriver.BaseForm;
+import Person.Student;
 import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class FormWithRequiredFieldsTest extends BaseForm {
-    public FormSteps steps = new FormSteps();
-    public static FormFrame frame = new FormFrame();
+    private FormSteps steps = new FormSteps();
+    private FormFrame frame = new FormFrame();
+    private Student testData = Student.randomized();
 
     @Epic("Заполнение формы")
     @Test(description = "Заполнение обязательных полей формы", testName = "Заполнение обязательных полей формы")
@@ -20,31 +24,25 @@ public class FormWithRequiredFieldsTest extends BaseForm {
          * Шаг : Заполнение поля 'FirstName'
          * ОР : Отображается введенное значение
          */
-        steps.fillingInTheName("Марина");
+        steps.fillingInTheName(testData.getFirstName());
 
         /*
          * Шаг : Заполнение поля 'LastName'
          * ОР : Отображается введенное значение
          */
-        steps.fillingInTheLastName("Булычева");
-
-        /*
-         * Шаг : Зполнение поля 'Email'
-         * ОР : Отображается введенное значение
-         */
-        steps.fillingInTheEmail("mari77n@gmail.com");
+        steps.fillingInTheLastName(testData.getLastName());
 
         /*
          * Шаг : Выбрать 'Gender'
          * ОР : Выбрана радиокнопка(элемент становится активным)
          */
-        steps.selectGender();
+        steps.selectGender(testData.getGender().getGender());
 
         /*
          * Шаг : Заполнение поля 'Mobile'
          * ОР :  Отображается введенное значение
          */
-        steps.fillInThePhoneNumber();
+        steps.fillInThePhoneNumber(testData.getMobile());
 
         /*
          * Шаг : Выбрать дату рождения
@@ -58,8 +56,15 @@ public class FormWithRequiredFieldsTest extends BaseForm {
          */
         steps.clickButton();
 
-        frame.formElements.modalWindowBody.shouldHave(Condition.exist);
-//        Assertions.assertThat(frame.formElements.buttonClose.isEnabled()).as("Кнопка модального окна активна");
+        if (frame.formElements.modalWindowBody.shouldHave(Condition.exist).isDisplayed()) {
+
+//            assertThat(frame.formElements.getModalData()).isEqualTo(testData);
+            assertThat(frame.formElements.getModalData().getLastName()).isEqualTo(testData.getLastName());
+            assertThat(frame.formElements.getModalData().getFirstName()).isEqualTo(testData.getFirstName());
+            assertThat(frame.formElements.getModalData().getMobile()).isEqualTo(testData.getMobile());
+            assertThat(frame.formElements.getModalData().getGender()).isEqualTo(testData.getGender());
+        }
+
     }
 
 }
