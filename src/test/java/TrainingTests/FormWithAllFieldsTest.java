@@ -45,7 +45,7 @@ public class FormWithAllFieldsTest extends BaseForm {
          * Шаг : Заполнение поля 'Mobile'
          * ОР :  Отображается введенное значение
          */
-        steps.fillInThePhoneNumber();
+        steps.fillInThePhoneNumber(testData.getMobile());
 
         /*
          * Шаг : Выбрать дату рождения

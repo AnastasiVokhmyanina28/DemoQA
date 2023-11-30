@@ -32,12 +32,6 @@ public class FormSteps {
         frame.formElements.selectGender(value);
     }
 
-
-    @Step("Заполнение поля 'Mobile'")
-    public void fillInThePhoneNumber() {
-        frame.formElements.phoneNumber.val(generation.numberGeneration());
-    }
-
     @Step("Некорректное заполнение поля 'Mobile'")
     public void fillInThePhoneNumber(String number) {
         frame.formElements.phoneNumber.val(number);
