@@ -13,83 +13,83 @@ public class FormWithAllFieldsTest extends BaseForm {
     private Student testData = Student.randomized();
 
     @Epic("Заполнение формы")
-    @Test(description = "Заполнение обязательных и дополнительных полей формы", testName = "Заполнение обязательных и дополнительных полей формы")
+    @Test(description = "Заполнение всех полей формы", testName = "Заполнение всех полей формы")
 
     public void fillInTheRequiredAndAdditionalFields() {
 
-        /*
+        /**
          * Шаг : Заполнение поля 'FirstName'
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheName("Александр");
 
-        /*
+        /**
          * Шаг : Заполнение поля 'LastName'
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheLastName("Шилов");
 
-        /*
+        /**
          * Шаг : Зполнение поля 'Email'
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheEmail("Shilov77alex@gmail.com");
 
-        /*
+        /**
          * Шаг : Выбрать 'Gender'
          * ОР : Выбрана радиокнопка(элемент становится активным)
          */
         steps.selectGender(testData.getGender().getGender());
 
-        /*
+        /**
          * Шаг : Заполнение поля 'Mobile'
          * ОР :  Отображается введенное значение
          */
         steps.fillInThePhoneNumber(testData.getMobile());
 
-        /*
+        /**
          * Шаг : Выбрать дату рождения
          * ОР : В поле 'Date of Birth' отобразится полная дата
          */
-        steps.chooseAYearOfBirth();
+        steps.chooseAYearOfBirth("1981");
 
-        /*
+        /**
          * Шаг : Выбрать элемент 'Subjects' из выпадающего списка
          * ОР : В поле отобразится выбранный элемент
          */
         steps.chooseOfSubjects("o");
 
-        /*
+        /**
          * Шаг : Выбрать 'Hobbies'
          * ОР : Выбранный чекбокс активен
          */
         steps.chooseHobbies();
 
-        /*
+        /**
          * Шаг : Загрузить файл
          * ОР : Отображается название выбранного файла
          */
         steps.fileUpload();
 
-        /*
+        /**
          * Шаг : Заполнение поля 'Current Address'
          * ОР : Отображается введенное значение
          */
         steps.enterAddress("Кострома");
 
-        /*
+        /**
          * Шаг : Выбрать 'State'
          * ОР : Отображается выбранное значение
          */
         steps.chooseState();
 
-        /*
+        /**
          * Шаг : Выбрать 'City'
          * ОР : Отображается выбранное значение
          */
         steps.chooseCity();
 
-        /*
+        /**
          * Шаг : Клик по кнопке 'Submit'
          * ОР : Откроется модальное окно с введенными данными
          */

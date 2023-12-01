@@ -1,6 +1,7 @@
 package Training.DataGeneration;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -24,6 +25,10 @@ public class DataGeneration {
 
     public static void deleteFooter() {
         executeJavaScript("document.getElementsByTagName(\"footer\").item(0).remove()");
+    }
+
+    public static void clearTheField(SelenideElement element){
+        element.clear();
     }
 
 }

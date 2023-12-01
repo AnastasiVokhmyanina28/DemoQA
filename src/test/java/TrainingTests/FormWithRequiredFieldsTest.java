@@ -20,37 +20,37 @@ public class FormWithRequiredFieldsTest extends BaseForm {
 
     public void fillInTheRequiredFields() {
 
-        /*
+        /**
          * Шаг : Заполнение поля 'FirstName'
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheName(testData.getFirstName());
 
-        /*
+        /**
          * Шаг : Заполнение поля 'LastName'
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheLastName(testData.getLastName());
 
-        /*
+        /**
          * Шаг : Выбрать 'Gender'
          * ОР : Выбрана радиокнопка(элемент становится активным)
          */
         steps.selectGender(testData.getGender().getGender());
 
-        /*
+        /**
          * Шаг : Заполнение поля 'Mobile'
          * ОР :  Отображается введенное значение
          */
         steps.fillInThePhoneNumber(testData.getMobile());
 
-        /*
+        /**
          * Шаг : Выбрать дату рождения
          * ОР : В поле 'Date of Birth' отобразится полная дата
          */
-        steps.chooseAYearOfBirth();
+        steps.chooseAYearOfBirth("1981");
 
-        /*
+        /**
          * Шаг : Клик по кнопке 'Submit'
          * ОР : Откроется модальное окно с введенными данными
          */

@@ -22,40 +22,40 @@ public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
 
     public void CheckingAForm() {
 
-        /*
+        /**
          * Шаг : Клик по кнопке 'Submit'
          * ОР :  Незаполненный обязательные поля выделяются красной рамкой(Модальное окно не открывается)
          */
         steps.clickButton();
         formFrame.formElements.buttonClose.shouldNotBe(Condition.visible);
 
-        /*
+        /**
          * Шаг : Заполнение поля 'FirstName'
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheName(testData.getFirstName());
 
-        /*
+        /**
          * Шаг : Клик по кнопке 'Submit'
          * ОР : Незаполненный обязательные поля выделяются красной рамкой(Модальное окно не открывается)
          */
         steps.clickButton();
         formFrame.formElements.buttonClose.shouldNotBe(Condition.visible);
 
-        /*
+        /**
          * Шаг : Заполнение поля 'LastName'
          * ОР : Отображается введенное значение
          */
         steps.fillingInTheLastName(testData.getLastName());
 
-        /*
+        /**
          * Шаг : Клик по кнопке 'Submit'
          * ОР : Незаполненный обязательные поля выделяются красной рамкой(Модальное окно не открывается)
          */
         steps.clickButton();
         formFrame.formElements.buttonClose.shouldNotBe(Condition.visible);
 
-        /*
+        /**
          * Шаг : Выбрать 2 гендера
          * ОР : Возможность выбрать только 1 гендер
          */
@@ -63,21 +63,21 @@ public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
         assertThat(formFrame.formElements.maleGenderRadioButton.isSelected())
                 .isNotEqualTo(formFrame.formElements.femaleGenderRadioButton.isSelected());
 
-        /*
+        /**
          * Шаг : Клик по кнопке 'Submit'
          * ОР : Незаполненный обязательные поля выделяются красной рамкой(Модальное окно не открывается)
          */
         steps.clickButton();
         formFrame.formElements.buttonClose.shouldNotBe(Condition.visible);
 
-        /*
+        /**
          * Шаг : Заполнение поля 'Mobile'(количество символов в строке превышает максимально допустимое - введено 16 символов)
          * ОР :  Отображаются только первые 10 символов от вводимой строки
          */
         steps.fillInThePhoneNumber("1234567890123");
         assertThat(formFrame.formElements.phoneNumber.getValue().length()).isEqualTo(Integer.valueOf(formFrame.formElements.phoneNumber.getAttribute("maxlength")));
 
-        /*
+        /**
          * Шаг : Клик по кнопке 'Submit'
          * ОР : Откроется модальное окно с введенными данными
          */

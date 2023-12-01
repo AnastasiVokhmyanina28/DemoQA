@@ -33,7 +33,6 @@ public class FormElements {
     public static final SelenideElement maleGenderRadioButton = $x("//input[@id='gender-radio-1']");
     public static final SelenideElement femaleGender = $x("//label[@for='gender-radio-2']");
     public static final SelenideElement femaleGenderRadioButton = $x("//input[@id='gender-radio-2']");
-    public static final SelenideElement chooseYearOfBirth = $x("//select[@class='react-datepicker__year-select']/option[@value='1981']");
     public static final SelenideElement chooseOfMonthOfBirth = $x("//select[@class='react-datepicker__month-select']/option[@value='5']");
     public static final SelenideElement chooseOfDayOfBirth = $x("//div[contains(@class, 'react-datepicker__day react-datepicker__day--018')]");
     public static final ElementsCollection subjectList = $$x("//div[contains(@class, 'subjects-auto-complete__option')]").as("элементы в выпадающем списке");
@@ -52,6 +51,10 @@ public class FormElements {
         result.setMobile(getModalWindowValues.get(ROWS.Student_Mobile.tabIndex).getText());
 
         return result;
+    }
+
+    public static SelenideElement chooseYearOfBirth(String year) {
+        return $x(String.format("//select[@class='react-datepicker__year-select']/option[@value='%s']", year));
     }
 
     public static SelenideElement getGenderRadio(String value) {

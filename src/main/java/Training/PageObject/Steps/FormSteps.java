@@ -38,11 +38,11 @@ public class FormSteps {
     }
 
     @Step("Выбрать 'Date of Birth'")
-    public void chooseAYearOfBirth() {
+    public void chooseAYearOfBirth(String year) {
         frame.formElements.dateOfBirth.click();
 
         frame.formElements.yearField.click();
-        frame.formElements.chooseYearOfBirth.click();
+        frame.formElements.chooseYearOfBirth(year).click();
 
         frame.formElements.mounthField.click();
         frame.formElements.chooseOfMonthOfBirth.click();
