@@ -10,10 +10,6 @@ import java.util.*;
 
 public class DataGeneration {
 
-    public static String numberGeneration() {
-        return RandomStringUtils.randomNumeric(10);
-    }
-
     public static String randomize(ElementsCollection elements, String attribute) {
         Random random = new Random();
         int i = random.nextInt(elements.size() - 1);

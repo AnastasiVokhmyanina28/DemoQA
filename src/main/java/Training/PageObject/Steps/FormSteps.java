@@ -2,11 +2,15 @@ package Training.PageObject.Steps;
 
 import Training.DataGeneration.DataGeneration;
 import Training.PageObject.Frame.FormFrame;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
+import lombok.SneakyThrows;
 
 import static com.codeborne.selenide.Condition.visible;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class FormSteps {
     public static FormFrame frame = new FormFrame();
@@ -68,6 +72,13 @@ public class FormSteps {
     public void fileUpload() {
         File file = new File("src/main/resources/file/Resume.doc");
         frame.formElements.fileUpload.sendKeys(file.getAbsolutePath());
+        addAttachment(file);
+    }
+
+    @Attachment
+    @SneakyThrows
+    public byte[] addAttachment(File file) {
+        return Files.readAllBytes(Path.of(file.getAbsolutePath()));
     }
 
     @Step("Заполнение поля 'Current Address'")
