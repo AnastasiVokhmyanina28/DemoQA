@@ -42,7 +42,7 @@ public class FormSteps {
     }
 
     @Step("Выбрать 'Date of Birth'")
-    public void chooseAYearOfBirth(String year) {
+    public void chooseAYearOfBirth(Integer year) {
         frame.formElements.dateOfBirth.click();
 
         frame.formElements.yearField.click();

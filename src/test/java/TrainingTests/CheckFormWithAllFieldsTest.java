@@ -3,10 +3,12 @@ package TrainingTests;
 import ChromeDriver.BaseForm;
 import Person.Student;
 import Training.DataGeneration.DataGeneration;
+import Training.Matchers.CustomMatchers;
 import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
+import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
@@ -103,8 +105,11 @@ public class CheckFormWithAllFieldsTest extends BaseForm {
          * Шаг : Выбрать дату рождения, у которой год больше текущего
          * ОР : В поле 'Date of Birth' отобразится полная дата(но сохранение невозможно)
          */
-        steps.chooseAYearOfBirth("2024");
-        assertThat(Integer.parseInt(formFrame.formElements.dateOfBirth.getValue().split(" ")[2].toString())).isBetween(1920, LocalDate.now().getYear());
+        steps.chooseAYearOfBirth(2022);
+        MatcherAssert.assertThat(
+                Integer.parseInt(formFrame.formElements.dateOfBirth.getValue().split(" ")[2].toString()),
+                new CustomMatchers(1920, LocalDate.now().getYear())
+        );
 
         /**
          * Шаг : Клик по кнопке 'Submit'

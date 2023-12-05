@@ -48,7 +48,7 @@ public class FormWithRequiredFieldsTest extends BaseForm {
          * Шаг : Выбрать дату рождения
          * ОР : В поле 'Date of Birth' отобразится полная дата
          */
-        steps.chooseAYearOfBirth("1981");
+        steps.chooseAYearOfBirth(1981);
 
         /**
          * Шаг : Клик по кнопке 'Submit'
@@ -58,7 +58,6 @@ public class FormWithRequiredFieldsTest extends BaseForm {
 
         if (frame.formElements.modalWindowBody.shouldHave(Condition.exist).isDisplayed()) {
 
-//            assertThat(frame.formElements.getModalData()).isEqualTo(testData);
             assertThat(frame.formElements.getModalData().getLastName()).isEqualTo(testData.getLastName());
             assertThat(frame.formElements.getModalData().getFirstName()).isEqualTo(testData.getFirstName());
             assertThat(frame.formElements.getModalData().getMobile()).isEqualTo(testData.getMobile());

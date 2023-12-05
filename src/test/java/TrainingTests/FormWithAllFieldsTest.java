@@ -51,7 +51,7 @@ public class FormWithAllFieldsTest extends BaseForm {
          * Шаг : Выбрать дату рождения
          * ОР : В поле 'Date of Birth' отобразится полная дата
          */
-        steps.chooseAYearOfBirth("1981");
+        steps.chooseAYearOfBirth(1987);
 
         /**
          * Шаг : Выбрать элемент 'Subjects' из выпадающего списка

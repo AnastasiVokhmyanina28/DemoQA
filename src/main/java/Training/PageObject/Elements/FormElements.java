@@ -53,7 +53,7 @@ public class FormElements {
         return result;
     }
 
-    public static SelenideElement chooseYearOfBirth(String year) {
+    public static SelenideElement chooseYearOfBirth(Integer year) {
         return $x(String.format("//select[@class='react-datepicker__year-select']/option[@value='%s']", year));
     }
 
