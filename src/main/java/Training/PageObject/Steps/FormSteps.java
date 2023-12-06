@@ -1,5 +1,6 @@
 package Training.PageObject.Steps;
 
+import Person.Student;
 import Training.DataGeneration.DataGeneration;
 import Training.PageObject.Frame.FormFrame;
 import io.qameta.allure.Attachment;
@@ -13,8 +14,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class FormSteps {
-    public static FormFrame frame = new FormFrame();
-    public static DataGeneration generation = new DataGeneration();
+    private static FormFrame frame = new FormFrame();
+    private static DataGeneration generation = new DataGeneration();
+    public Student testData = Student.randomized();
 
     @Step("Заполнение поля 'FirstName'")
     public void fillingInTheName(String name) {
@@ -117,5 +119,45 @@ public class FormSteps {
         frame.formElements.maleGender.click();
         frame.formElements.femaleGender.click();
     }
+
+    @Step("Заполнение обязательных полей формы")
+    public void fillInTheMandatoryFields() {
+        fillingInTheName(testData.getFirstName());
+        fillingInTheLastName(testData.getLastName());
+        selectGender(testData.getGender().getGender());
+        fillInThePhoneNumber(testData.getMobile());
+    }
+
+    @Step("Заполнение дополнительных полей формы")
+    public void fillInAdditionalFields() {
+        fillingInTheEmail("Shilov77alex@gmail.com");
+        chooseAYearOfBirth(1987);
+        chooseOfSubjects("o");
+        chooseHobbies();
+        fileUpload();
+        enterAddress("Кострома");
+        chooseState();
+        chooseCity();
+    }
+
+    @Step("Проверка формы - обязательные поля")
+    public void checkingAFormWithMandatoryFieldsTest(){
+        clickButton();
+        fillingInTheName(testData.getFirstName());
+        fillingInTheLastName(testData.getLastName());
+        genderCheckTheSelection();
+        fillInThePhoneNumber(testData.getMobile());
+    }
+
+    @Step("Проверка формы - дополнительные поля")
+    public void checkingAFormAdditionalFields(){
+        fillingInTheEmail("email@exаmplе.com");
+        clickButton();
+        generation.clearTheField(frame.formElements.email);
+        fillingInTheEmail("name@example.com");
+        chooseAYearOfBirth(2024);
+        clickButton();
+    }
+
 
 }
