@@ -72,7 +72,6 @@ public class FormElements {
 
     public static void selectGender(String value) {
         getGenderRadio(value).click();
-
     }
 
     public static SelenideElement getSubject(String elementClass) {

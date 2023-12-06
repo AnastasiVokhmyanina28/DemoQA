@@ -6,7 +6,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import java.io.InputStream;
+import java.io.FileInputStream;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -16,10 +16,10 @@ public class BaseForm {
 
     static {
         try {
-            Properties properties = new Properties();
-            InputStream inputStream = BaseForm.class.getClassLoader().getResourceAsStream("test.properties");
-            properties.load(inputStream);
-            baseUrl = properties.getProperty("baseUrl");
+            Properties property = new Properties();
+            FileInputStream fis = new FileInputStream("src/main/resources/test.properties");
+            property.load(fis);
+            baseUrl = property.getProperty("baseUrl");
         } catch (Exception e) {
             e.printStackTrace();
         }
