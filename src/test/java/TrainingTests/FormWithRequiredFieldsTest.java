@@ -45,12 +45,6 @@ public class FormWithRequiredFieldsTest extends BaseForm {
         steps.fillInThePhoneNumber(testData.getMobile());
 
         /**
-         * Шаг : Выбрать дату рождения
-         * ОР : В поле 'Date of Birth' отобразится полная дата
-         */
-        steps.chooseAYearOfBirth(1981);
-
-        /**
          * Шаг : Клик по кнопке 'Submit'
          * ОР : Откроется модальное окно с введенными данными
          */

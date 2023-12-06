@@ -4,8 +4,11 @@ import ChromeDriver.BaseForm;
 import Person.Student;
 import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
+import com.codeborne.selenide.Condition;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FormWithAllFieldsTest extends BaseForm {
     private FormSteps steps = new FormSteps();
@@ -21,13 +24,13 @@ public class FormWithAllFieldsTest extends BaseForm {
          * Шаг : Заполнение поля 'FirstName'
          * ОР : Отображается введенное значение
          */
-        steps.fillingInTheName("Александр");
+        steps.fillingInTheName(testData.getFirstName());
 
         /**
          * Шаг : Заполнение поля 'LastName'
          * ОР : Отображается введенное значение
          */
-        steps.fillingInTheLastName("Шилов");
+        steps.fillingInTheLastName(testData.getLastName());
 
         /**
          * Шаг : Зполнение поля 'Email'
@@ -48,7 +51,7 @@ public class FormWithAllFieldsTest extends BaseForm {
         steps.fillInThePhoneNumber(testData.getMobile());
 
         /**
-         * Шаг : Выбрать дату рождения
+         * Шаг : Выбор 'Date of Birth'
          * ОР : В поле 'Date of Birth' отобразится полная дата
          */
         steps.chooseAYearOfBirth(1987);
@@ -95,7 +98,13 @@ public class FormWithAllFieldsTest extends BaseForm {
          */
         steps.clickButton();
 
-        frame.formElements.buttonClose.shouldHave();
+        if (frame.formElements.modalWindowBody.shouldHave(Condition.exist).isDisplayed()) {
+
+            assertThat(frame.formElements.getModalData().getLastName()).isEqualTo(testData.getLastName());
+            assertThat(frame.formElements.getModalData().getFirstName()).isEqualTo(testData.getFirstName());
+            assertThat(frame.formElements.getModalData().getMobile()).isEqualTo(testData.getMobile());
+            assertThat(frame.formElements.getModalData().getGender()).isEqualTo(testData.getGender());
+        }
     }
 
 }
