@@ -5,20 +5,22 @@ import Person.Student;
 import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
 import com.codeborne.selenide.Condition;
-import io.qameta.allure.Step;
+import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CheckFormWithAllFieldsTest extends BaseForm {
+public class CheckingAFormWithMandatoryFieldsTest extends BaseForm {
 
     private FormSteps steps = new FormSteps();
     private FormFrame formFrame = new FormFrame();
     private Student testData = Student.randomized();
 
-    @Step("Проверка формы")
-    @Test(description = "Проверка формы на валидацию полей", testName = "Проверка формы со всеми полями")
-    public void checkFormWithAllFields() {
+
+    @Epic("Проверка формы")
+    @Test(description = "Проверка формы - обязательные поля", testName = "Проверка формы с обязательными полями")
+
+    public void CheckingAForm() {
 
         /**
          * Шаг : Заполнение обязятельных полей
@@ -27,13 +29,13 @@ public class CheckFormWithAllFieldsTest extends BaseForm {
         steps.checkingAFormWithMandatoryFieldsTest(testData);
 
         /**
-         * Шаг : Заполнение дополнительных полей
-         * ОР : Введенные данные отображаются в полях
+         * Шаг : Клик по кнопке 'Submit'
+         * ОР : Откроется модальное окно с введенными данными
          */
-        steps.checkingAFormAdditionalFields();
+        steps.clickButton();
 
         /**
-        Проверка, что выбран только 1 гендер
+         Проверка, что выбран только 1 гендер
          */
         assertThat(formFrame.formElements.maleGenderRadioButton.isSelected())
                 .isNotEqualTo(formFrame.formElements.femaleGenderRadioButton.isSelected());
@@ -43,13 +45,9 @@ public class CheckFormWithAllFieldsTest extends BaseForm {
          */
         assertThat(formFrame.formElements.phoneNumber.getValue().length()).isEqualTo(Integer.valueOf(formFrame.formElements.phoneNumber.getAttribute("maxlength")));
 
-        formFrame.formElements.buttonClose.shouldNotBe(Condition.visible);
-
-        /**проверка, что значение входит в промежуток
-         */
-//        MatcherAssert.assertThat(
-//                Integer.parseInt(formFrame.formElements.dateOfBirth.getValue().split(" ")[2].toString()),
-//                new CustomMatchers(1920, LocalDate.now().getYear())
-//        );
+        if (formFrame.formElements.modalWindowBody.shouldHave(Condition.exist).isDisplayed()) {
+            assertThat(formFrame.formElements.getModalData().getFirstName()).isEqualTo(testData.getFirstName());
+            assertThat(formFrame.formElements.getModalData().getLastName()).isEqualTo(testData.getLastName());
+        }
     }
 }

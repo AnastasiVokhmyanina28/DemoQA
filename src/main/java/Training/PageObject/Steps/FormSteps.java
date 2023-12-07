@@ -16,7 +16,6 @@ import java.nio.file.Path;
 public class FormSteps {
     private static FormFrame frame = new FormFrame();
     private static DataGeneration generation = new DataGeneration();
-    public Student testData = Student.randomized();
 
     @Step("Заполнение поля 'FirstName'")
     public void fillingInTheName(String name) {
@@ -121,7 +120,7 @@ public class FormSteps {
     }
 
     @Step("Заполнение обязательных полей формы")
-    public void fillInTheMandatoryFields() {
+    public void fillInTheMandatoryFields(Student testData) {
         fillingInTheName(testData.getFirstName());
         fillingInTheLastName(testData.getLastName());
         selectGender(testData.getGender().getGender());
@@ -141,7 +140,7 @@ public class FormSteps {
     }
 
     @Step("Проверка формы - обязательные поля")
-    public void checkingAFormWithMandatoryFieldsTest(){
+    public void checkingAFormWithMandatoryFieldsTest(Student testData){
         clickButton();
         fillingInTheName(testData.getFirstName());
         fillingInTheLastName(testData.getLastName());

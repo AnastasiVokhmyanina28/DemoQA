@@ -1,6 +1,7 @@
 package TrainingTests;
 
 import ChromeDriver.BaseForm;
+import Person.Student;
 import Training.PageObject.Frame.FormFrame;
 import Training.PageObject.Steps.FormSteps;
 import com.codeborne.selenide.Condition;
@@ -12,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FillingTheFormWithAllFields extends BaseForm {
     private FormSteps steps = new FormSteps();
     private FormFrame frame = new FormFrame();
+    private Student testData = Student.randomized();
 
 
     @Epic("Заполнение формы")
@@ -23,7 +25,7 @@ public class FillingTheFormWithAllFields extends BaseForm {
          * Шаг : Заполнение обязятельных полей
          * ОР : Введенные данные отображаются в полях
          */
-        steps.fillInTheMandatoryFields();
+        steps.fillInTheMandatoryFields(testData);
 
         /**
          * Шаг : Заполнение дополнительных полей
@@ -39,10 +41,10 @@ public class FillingTheFormWithAllFields extends BaseForm {
 
         if (frame.formElements.modalWindowBody.shouldHave(Condition.exist).isDisplayed()) {
 
-            assertThat(frame.formElements.getModalData().getFirstName()).isEqualTo(steps.testData.getFirstName());
-            assertThat(frame.formElements.getModalData().getLastName()).isEqualTo(steps.testData.getLastName());
-            assertThat(frame.formElements.getModalData().getMobile()).isEqualTo(steps.testData.getMobile());
-            assertThat(frame.formElements.getModalData().getGender()).isEqualTo(steps.testData.getGender());
+            assertThat(frame.formElements.getModalData().getFirstName()).isEqualTo(testData.getFirstName());
+            assertThat(frame.formElements.getModalData().getLastName()).isEqualTo(testData.getLastName());
+            assertThat(frame.formElements.getModalData().getMobile()).isEqualTo(testData.getMobile());
+            assertThat(frame.formElements.getModalData().getGender()).isEqualTo(testData.getGender());
         }
     }
 
