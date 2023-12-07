@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FillingTheFormWithAllFields extends BaseForm {
+public class FillingTheFormWithAllFieldsTest extends BaseForm {
     private FormSteps steps = new FormSteps();
     private FormFrame frame = new FormFrame();
     private Student testData = Student.randomized();
